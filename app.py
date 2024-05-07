@@ -59,15 +59,18 @@ def find_similar_songs(query, num_songs=10):
         query_song_sort_idx = np.argsort(np.array(query_song_cos_dist))
         similar_songs = []
         i = 0
-        while num_songs > 0:
+        seen_titles = set()
+        while num_songs > 0 and i < len(query_song_sort_idx):
             df_idx = query_song_sort_idx[i]
-            if query_song_cos_dist[df_idx] != 0 :
-                similar_songs.append((df['track_id'][df_idx], df['title'][df_idx], df['artist_name'][df_idx]))
+            title = df['title'][df_idx]
+            if query_song_cos_dist[df_idx] != 0 and title not in seen_titles:
+                similar_songs.append(["Title: ", df['title'][df_idx]," By: ", df['artist_name'][df_idx]])
                 num_songs -= 1
+                seen_titles.add(title)
             i += 1
         return similar_songs
     return []
-
+ 
 @app.route('/submit-lyrics', methods=['POST'])
 def submit_lyrics():
     data = request.json
