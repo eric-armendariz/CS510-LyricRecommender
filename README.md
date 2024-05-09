@@ -38,4 +38,16 @@ Once both the frontend and backend are up and running:
 - Click the `Submit` button.
 - The LSA model, which has been preprocessed and trained, will handle your query and display 10 song recommendations along with their titles and artists.
 
-Enjoy discovering new music with LyRecs!
+## Modifying Our Model
+
+If you wish to work with or improve the models, feel free to fork our repo and follow these steps:
+
+1. **Download the Necessary Music Datasets**:
+   - Run the script `load_dataset.py` to download the required datasets.
+   ```bash
+   python load_dataset.py
+   ```
+2. **Modify the Models:**
+- For modifications on the Word2Vec model, edit the code in `build_model.ipynb`.
+- To adjust the LSA model, edit `build_lsa_model.ipynb`.
+- For changes to the GNN model, edit `gnn.py`.
